@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,7 +31,25 @@ public class MedicineRequestController {
     @PostMapping("/save")
     public ResponseEntity<String> saveMedicineRequest(@RequestBody MedicineRequest medicineRequest) {
         String message = medicineRequestService.saveMedicineRequest(medicineRequest);
+        if (message.equals("Medicine request date cannot be in the past")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
+        } else if (message.equals("Pharmacy already has a request on that date")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+        }
         return new ResponseEntity<>(message, HttpStatus.CREATED);
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<String> updateStatus(
+            @PathVariable UUID id,
+            @RequestParam RequestStatus status) {
+        String message = medicineRequestService.updateStatus(id, status);
+        if (message.equals("The medicine request with that id does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        } else if (message.startsWith("Cannot change status from")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
+        }
+        return ResponseEntity.ok(message);
     }
 
     @GetMapping("/all")

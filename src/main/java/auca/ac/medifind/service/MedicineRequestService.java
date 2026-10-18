@@ -17,9 +17,17 @@ public class MedicineRequestService {
     private MedicineRequestRepository medicineRequestRepository;
 
     public String saveMedicineRequest(MedicineRequest medicineRequest) {
-        if (medicineRequest.getStatus() == null) {
-            medicineRequest.setStatus(RequestStatus.SUBMITTED);
+        if (medicineRequest.getRequestDate() != null && medicineRequest.getRequestDate().isBefore(LocalDate.now())) {
+            return "Medicine request date cannot be in the past";
         }
+        if (medicineRequest.getPharmacy() != null && medicineRequest.getRequestDate() != null) {
+            boolean exists = medicineRequestRepository.existsByPharmacyAndRequestDateAndStatusNot(
+                    medicineRequest.getPharmacy(), medicineRequest.getRequestDate(), RequestStatus.DECLINED);
+            if (exists) {
+                return "Pharmacy already has a request on that date";
+            }
+        }
+        medicineRequest.setStatus(RequestStatus.SUBMITTED);
         medicineRequestRepository.save(medicineRequest);
         return "Medicine request saved successfully";
     }
@@ -40,7 +48,7 @@ public class MedicineRequestService {
         MedicineRequest request = existing.get();
         request.setRequestDate(updated.getRequestDate());
         request.setMedicineName(updated.getMedicineName());
-        request.setStatus(updated.getStatus());
+        // General PUT update must no longer change the status; it only changes via status flow
         if (updated.getCustomer() != null) {
             request.setCustomer(updated.getCustomer());
         }
@@ -49,6 +57,34 @@ public class MedicineRequestService {
         }
         medicineRequestRepository.save(request);
         return "Medicine request updated successfully";
+    }
+
+    public String updateStatus(UUID id, RequestStatus newStatus) {
+        Optional<MedicineRequest> existing = medicineRequestRepository.findById(id);
+        if (existing.isEmpty()) {
+            return "The medicine request with that id does not exist";
+        }
+        MedicineRequest request = existing.get();
+        RequestStatus currentStatus = request.getStatus();
+
+        boolean allowed = false;
+        if (currentStatus == RequestStatus.SUBMITTED) {
+            if (newStatus == RequestStatus.MATCHED || newStatus == RequestStatus.DECLINED) {
+                allowed = true;
+            }
+        } else if (currentStatus == RequestStatus.MATCHED) {
+            if (newStatus == RequestStatus.FULFILLED || newStatus == RequestStatus.DECLINED) {
+                allowed = true;
+            }
+        }
+
+        if (!allowed) {
+            return "Cannot change status from " + currentStatus + " to " + newStatus;
+        }
+
+        request.setStatus(newStatus);
+        medicineRequestRepository.save(request);
+        return "Medicine request status updated successfully";
     }
 
     public String deleteMedicineRequest(UUID id) {
