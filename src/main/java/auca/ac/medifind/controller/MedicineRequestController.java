@@ -1,7 +1,9 @@
 package auca.ac.medifind.controller;
 
 import auca.ac.medifind.model.MedicineRequest;
+import auca.ac.medifind.model.RequestStatus;
 import auca.ac.medifind.service.MedicineRequestService;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -61,5 +64,19 @@ public class MedicineRequestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
         return ResponseEntity.ok(message);
+    }
+
+    @GetMapping("/by-status")
+    public ResponseEntity<List<MedicineRequest>> getRequestsByStatus(@RequestParam RequestStatus status) {
+        return ResponseEntity.ok(medicineRequestService.getRequestsByStatus(status));
+    }
+
+    @GetMapping("/between")
+    public ResponseEntity<List<MedicineRequest>> getRequestsBetween(
+            @RequestParam String start,
+            @RequestParam String end) {
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+        return ResponseEntity.ok(medicineRequestService.getRequestsBetweenDates(startDate, endDate));
     }
 }

@@ -3,6 +3,7 @@ package auca.ac.medifind.service;
 import auca.ac.medifind.model.MedicineRequest;
 import auca.ac.medifind.model.RequestStatus;
 import auca.ac.medifind.repository.MedicineRequestRepository;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -57,5 +58,13 @@ public class MedicineRequestService {
         }
         medicineRequestRepository.deleteById(id);
         return "Medicine request deleted successfully";
+    }
+
+    public List<MedicineRequest> getRequestsByStatus(RequestStatus status) {
+        return medicineRequestRepository.findByStatusOrderByRequestDateAsc(status);
+    }
+
+    public List<MedicineRequest> getRequestsBetweenDates(LocalDate start, LocalDate end) {
+        return medicineRequestRepository.findByRequestDateBetweenOrderByRequestDateAsc(start, end);
     }
 }
