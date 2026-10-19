@@ -81,6 +81,8 @@ public class MedicineRequestController {
         String message = medicineRequestService.deleteMedicineRequest(id);
         if (message.equals("The medicine request with that id does not exist")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        } else if (message.equals("That medicine request has dispensed items, delete them first")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
         }
         return ResponseEntity.ok(message);
     }

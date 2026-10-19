@@ -16,6 +16,9 @@ public class MedicineRequestService {
     @Autowired
     private MedicineRequestRepository medicineRequestRepository;
 
+    @Autowired
+    private auca.ac.medifind.repository.DispensedItemRepository dispensedItemRepository;
+
     public String saveMedicineRequest(MedicineRequest medicineRequest) {
         if (medicineRequest.getRequestDate() != null && medicineRequest.getRequestDate().isBefore(LocalDate.now())) {
             return "Medicine request date cannot be in the past";
@@ -91,6 +94,9 @@ public class MedicineRequestService {
         Optional<MedicineRequest> existing = medicineRequestRepository.findById(id);
         if (existing.isEmpty()) {
             return "The medicine request with that id does not exist";
+        }
+        if (dispensedItemRepository.existsByMedicineRequest(existing.get())) {
+            return "That medicine request has dispensed items, delete them first";
         }
         medicineRequestRepository.deleteById(id);
         return "Medicine request deleted successfully";
