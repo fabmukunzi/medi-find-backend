@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MedicineRequestService {
@@ -108,5 +109,15 @@ public class MedicineRequestService {
 
     public List<MedicineRequest> getRequestsBetweenDates(LocalDate start, LocalDate end) {
         return medicineRequestRepository.findByRequestDateBetweenOrderByRequestDateAsc(start, end);
+    }
+
+    public List<Object[]> getStatsByStatus() {
+        return medicineRequestRepository.countRequestsByStatus();
+    }
+
+    @Transactional
+    public String cancelDay(UUID pharmacyId, LocalDate date) {
+        int count = medicineRequestRepository.cancelDay(pharmacyId, date);
+        return count + " medicine requests cancelled";
     }
 }

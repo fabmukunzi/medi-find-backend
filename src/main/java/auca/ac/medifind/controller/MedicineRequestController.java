@@ -100,4 +100,17 @@ public class MedicineRequestController {
         LocalDate endDate = LocalDate.parse(end);
         return ResponseEntity.ok(medicineRequestService.getRequestsBetweenDates(startDate, endDate));
     }
+
+    @GetMapping("/stats/by-status")
+    public ResponseEntity<List<Object[]>> getStatsByStatus() {
+        return ResponseEntity.ok(medicineRequestService.getStatsByStatus());
+    }
+
+    @PatchMapping("/cancel-day")
+    public ResponseEntity<String> cancelDay(
+            @RequestParam UUID pharmacyId,
+            @RequestParam String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        return ResponseEntity.ok(medicineRequestService.cancelDay(pharmacyId, localDate));
+    }
 }
