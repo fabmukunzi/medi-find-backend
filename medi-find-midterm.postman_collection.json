@@ -1,0 +1,852 @@
+{
+	"info": {
+		"_postman_id": "7b0d2d3a-923f-4e08-9df5-6e3e57f58a91",
+		"name": "MediFind Mid-Term Collection",
+		"description": "Postman Collection for MediFind Backend Mid-Term Examination - Student: Fabrice Mukunzi (ID: 29620)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Part A - CRUD",
+			"item": [
+				{
+					"name": "A2 - Save Medicine Class",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Antifungals\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-classes/save",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-classes",
+								"save"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Get All Medicine Classes",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-classes/all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-classes",
+								"all"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Save Service Area",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"areaNumber\": 5,\n    \"name\": \"Kacyiru North\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/service-areas/save",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"service-areas",
+								"save"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Get All Service Areas",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/service-areas/all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"service-areas",
+								"all"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Save Pharmacy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Apex Pharmacy\",\n    \"street\": \"KG 11 Ave\",\n    \"phone\": \"+250788999888\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/pharmacies/save",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"pharmacies",
+								"save"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Get All Pharmacies",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/pharmacies/all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"pharmacies",
+								"all"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Save Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Paul\",\n    \"lastName\": \"Kagabo\",\n    \"nationalId\": \"1199380011223344\",\n    \"phone\": \"+250788112233\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/save",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"save"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Get All Customers",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"all"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Get All Medicine Requests",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"all"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Get Entity By Unknown ID (404)",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Part B - Derived Queries",
+			"item": [
+				{
+					"name": "B1 - Find Customers by Last Name",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/by-last-name?lastName=umutoni",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"by-last-name"
+							],
+							"query": [
+								{
+									"key": "lastName",
+									"value": "umutoni"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "B2 - Medicine Requests by Status",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/by-status?status=SUBMITTED",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"by-status"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "SUBMITTED"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "B3 - Medicine Requests in Date Range",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/between?start=2026-10-01&end=2026-10-31",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"between"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "2026-10-01"
+								},
+								{
+									"key": "end",
+									"value": "2026-10-31"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Part C - JPQL with Joins",
+			"item": [
+				{
+					"name": "C1 - Pharmacies by Medicine Class",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/pharmacies/by-medicine-class?name=antibiotics",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"pharmacies",
+								"by-medicine-class"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "antibiotics"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "C2 - Free Service Areas",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/service-areas/free",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"service-areas",
+								"free"
+							]
+						}
+					}
+				},
+				{
+					"name": "C3 - Medicine Classes Nobody Holds",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-classes/unused",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-classes",
+								"unused"
+							]
+						}
+					}
+				},
+				{
+					"name": "C4 - Customers of Pharmacy (Success)",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/of-pharmacy/{{pharmacyId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"of-pharmacy",
+								"{{pharmacyId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "C4 - Customers of Pharmacy (Unknown ID 404)",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/of-pharmacy/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"of-pharmacy",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Part D - Business Rules",
+			"item": [
+				{
+					"name": "D1 - Safe Saving (Past Date 400)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"requestDate\": \"2020-01-01\",\n    \"medicineName\": \"Paracetamol\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/save",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"save"
+							]
+						}
+					}
+				},
+				{
+					"name": "D1 - Safe Saving (Conflict 409)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"requestDate\": \"2026-10-28\",\n    \"medicineName\": \"Ibuprofen 400mg\",\n    \"pharmacy\": {\n        \"id\": \"{{pharmacyId}}\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/save",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"save"
+							]
+						}
+					}
+				},
+				{
+					"name": "D2 - Status Flow (Valid Move 200)",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/{{medicineRequestId}}/status?status=MATCHED",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"{{medicineRequestId}}",
+								"status"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "MATCHED"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "D2 - Status Flow (Invalid Move 400)",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/{{fulfilledRequestId}}/status?status=SUBMITTED",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"{{fulfilledRequestId}}",
+								"status"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "SUBMITTED"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "D3 - Add Medicine Class to Pharmacy (Success 200)",
+					"request": {
+						"method": "PUT",
+						"url": {
+							"raw": "{{baseUrl}}/api/pharmacies/{{pharmacyId}}/medicine-classes/{{medicineClassId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"pharmacies",
+								"{{pharmacyId}}",
+								"medicine-classes",
+								"{{medicineClassId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "D3 - Add Medicine Class to Pharmacy (Duplicate 409)",
+					"request": {
+						"method": "PUT",
+						"url": {
+							"raw": "{{baseUrl}}/api/pharmacies/{{pharmacyId}}/medicine-classes/{{medicineClassId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"pharmacies",
+								"{{pharmacyId}}",
+								"medicine-classes",
+								"{{medicineClassId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "D4 - Move Pharmacy Service Area (Success 200)",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{baseUrl}}/api/pharmacies/{{pharmacyId}}/service-area?areaNumber=4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"pharmacies",
+								"{{pharmacyId}}",
+								"service-area"
+							],
+							"query": [
+								{
+									"key": "areaNumber",
+									"value": "4"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "D4 - Move Pharmacy Service Area (Taken Area 409)",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{baseUrl}}/api/pharmacies/{{pharmacyId}}/service-area?areaNumber=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"pharmacies",
+								"{{pharmacyId}}",
+								"service-area"
+							],
+							"query": [
+								{
+									"key": "areaNumber",
+									"value": "1"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Part E - Dispensed Items",
+			"item": [
+				{
+					"name": "E1 - Write Dispensed Item (Success 201)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"medicineName\": \"Coartem 20/120mg\",\n    \"dosage\": \"One tablet twice daily\",\n    \"quantity\": 24\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/dispensed-items/save?medicineRequestId={{fulfilledRequestId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dispensed-items",
+								"save"
+							],
+							"query": [
+								{
+									"key": "medicineRequestId",
+									"value": "{{fulfilledRequestId}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "E1 - Write Dispensed Item (Not Fulfilled 400)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"medicineName\": \"Amoxicillin 500mg\",\n    \"dosage\": \"One capsule three times a day\",\n    \"quantity\": 21\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/dispensed-items/save?medicineRequestId={{submittedRequestId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dispensed-items",
+								"save"
+							],
+							"query": [
+								{
+									"key": "medicineRequestId",
+									"value": "{{submittedRequestId}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "E2 - Dispensed Item History of Customer",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/dispensed-items/customer/1199780054321098",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dispensed-items",
+								"customer",
+								"1199780054321098"
+							]
+						}
+					}
+				},
+				{
+					"name": "E3 - Delete Medicine Request With Dispensed Items (409)",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/delete/{{fulfilledRequestId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"delete",
+								"{{fulfilledRequestId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "E3 - Delete Dispensed Item (Success 200)",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{baseUrl}}/api/dispensed-items/delete/{{dispensedItemId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dispensed-items",
+								"delete",
+								"{{dispensedItemId}}"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Part F - Reports & Bulk Updates",
+			"item": [
+				{
+					"name": "F1 - Medicine Requests Per Status",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/stats/by-status",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"stats",
+								"by-status"
+							]
+						}
+					}
+				},
+				{
+					"name": "F2 - Cancel Day For Absent Pharmacy",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/cancel-day?pharmacyId={{pharmacyId}}&date=2026-10-20",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"cancel-day"
+							],
+							"query": [
+								{
+									"key": "pharmacyId",
+									"value": "{{pharmacyId}}"
+								},
+								{
+									"key": "date",
+									"value": "2026-10-20"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Bonus",
+			"item": [
+				{
+					"name": "+5 - Dashboard Summary",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/dashboard/summary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"summary"
+							]
+						}
+					}
+				},
+				{
+					"name": "+5 - Medicine Requests Page By Page",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/page?page=0&size=5&sort=requestDate,desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "sort",
+									"value": "requestDate,desc"
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "pharmacyId",
+			"value": ""
+		},
+		{
+			"key": "medicineClassId",
+			"value": ""
+		},
+		{
+			"key": "medicineRequestId",
+			"value": ""
+		},
+		{
+			"key": "fulfilledRequestId",
+			"value": ""
+		},
+		{
+			"key": "submittedRequestId",
+			"value": ""
+		},
+		{
+			"key": "dispensedItemId",
+			"value": ""
+		}
+	]
+}
