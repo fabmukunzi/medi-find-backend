@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "7b0d2d3a-923f-4e08-9df5-6e3e57f58a91",
-		"name": "MediFind Mid-Term Collection",
-		"description": "Postman Collection for MediFind Backend Mid-Term Examination - Student: Fabrice Mukunzi (ID: 29620)",
+		"name": "MediFind",
+		"description": "Postman Collection for MediFind Backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -186,6 +186,33 @@
 					}
 				},
 				{
+					"name": "A2 - Save Medicine Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"requestDate\": \"2026-11-25\",\n    \"medicineName\": \"Paracetamol 500mg\",\n    \"customer\": {\n        \"id\": \"{{customerId}}\"\n    },\n    \"pharmacy\": {\n        \"id\": \"{{pharmacyId}}\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/save",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"save"
+							]
+						}
+					}
+				},
+				{
 					"name": "A2 - Get All Medicine Requests",
 					"request": {
 						"method": "GET",
@@ -214,6 +241,115 @@
 							"path": [
 								"api",
 								"medicine-requests",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Get Medicine Request By ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/{{medicineRequestId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"{{medicineRequestId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Update Medicine Request",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"requestDate\": \"2026-11-25\",\n    \"medicineName\": \"Paracetamol 1g\",\n    \"customer\": {\n        \"id\": \"{{customerId}}\"\n    },\n    \"pharmacy\": {\n        \"id\": \"{{pharmacyId}}\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/update/{{medicineRequestId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"update",
+								"{{medicineRequestId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Update Medicine Request (Unknown ID 404)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"requestDate\": \"2026-11-25\",\n    \"medicineName\": \"Paracetamol 500mg\",\n    \"customer\": {\n        \"id\": \"{{customerId}}\"\n    },\n    \"pharmacy\": {\n        \"id\": \"{{pharmacyId}}\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/update/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"update",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Delete Medicine Request",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/delete/{{medicineRequestId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"delete",
+								"{{medicineRequestId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "A2 - Delete Medicine Request (Unknown ID 404)",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{baseUrl}}/api/medicine-requests/delete/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicine-requests",
+								"delete",
 								"00000000-0000-0000-0000-000000000000"
 							]
 						}
@@ -660,6 +796,39 @@
 					}
 				},
 				{
+					"name": "E1 - Write Dispensed Item (Unknown Request 404)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"medicineName\": \"Amoxicillin 500mg\",\n    \"dosage\": \"One capsule three times a day\",\n    \"quantity\": 21\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/dispensed-items/save?medicineRequestId=00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"dispensed-items",
+								"save"
+							],
+							"query": [
+								{
+									"key": "medicineRequestId",
+									"value": "00000000-0000-0000-0000-000000000000"
+								}
+							]
+						}
+					}
+				},
+				{
 					"name": "E2 - Dispensed Item History of Customer",
 					"request": {
 						"method": "GET",
@@ -769,7 +938,7 @@
 			"name": "Bonus",
 			"item": [
 				{
-					"name": "+5 - Dashboard Summary",
+					"name": "Dashboard Summary",
 					"request": {
 						"method": "GET",
 						"url": {
@@ -786,7 +955,7 @@
 					}
 				},
 				{
-					"name": "+5 - Medicine Requests Page By Page",
+					"name": "Medicine Requests Page By Page",
 					"request": {
 						"method": "GET",
 						"url": {
@@ -823,6 +992,10 @@
 		{
 			"key": "baseUrl",
 			"value": "http://localhost:8080"
+		},
+		{
+			"key": "customerId",
+			"value": ""
 		},
 		{
 			"key": "pharmacyId",

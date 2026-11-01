@@ -1,6 +1,5 @@
 package auca.ac.medifind.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -9,26 +8,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "medicine_request")
 public class MedicineRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "request_date")
     private LocalDate requestDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
     private RequestStatus status;
 
-    @Column(name = "medicine_name")
     private String medicineName;
 
     @ManyToOne
